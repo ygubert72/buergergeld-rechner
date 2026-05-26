@@ -117,6 +117,25 @@
             color: #4e6e5e;
             margin-top: 20px;
         }
+        .steuer-tipp {
+            background: #fff8e7;
+            border-left: 4px solid #f5a623;
+            padding: 12px;
+            border-radius: 16px;
+            margin-top: 20px;
+            font-size: 0.8rem;
+        }
+        .steuer-tipp h4 {
+            margin: 0 0 8px 0;
+            color: #b85c00;
+        }
+        .steuer-tipp ul {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+        .steuer-tipp li {
+            margin: 5px 0;
+        }
         .child-entry {
             background: #f9fafb;
             padding: 12px;
@@ -149,12 +168,6 @@
         .counter img {
             vertical-align: middle;
             margin-left: 5px;
-        }
-        .housing-option {
-            background: #f0f5ed;
-            padding: 12px;
-            border-radius: 20px;
-            margin: 10px 0;
         }
     </style>
 </head>
@@ -234,15 +247,37 @@
         <p style="text-align:center;">👇 Введите данные и нажмите "Рассчитать"</p>
     </div>
 
+    <!-- НОВЫЙ БЛОК: КАК ВЕРНУТЬ НАЛОГИ -->
+    <div class="steuer-tipp">
+        <h4>💰 Как можно вернуть часть налогов (Steuererklärung)</h4>
+        <p><strong>Калькулятор показывает ежемесячный доход после автоматических вычетов. Но раз в год вы можете подать налоговую декларацию и вернуть часть налогов!</strong></p>
+        <p>Что можно заявить (примерные суммы возврата в год):</p>
+        <ul>
+            <li>🚗 <span class="term">Pendlerpauschale</span> — компенсация за дорогу на работу (0,38 €/км). При 20 км до работы → <strong>~1.670 €</strong> уменьшают налогооблагаемый доход (возврат ~300–500 €)</li>
+            <li>🔧 <span class="term">Handwerkerleistungen</span> — услуги мастеров (ремонт, уборка). До 1.200 € в год → возврат <strong>~240 €</strong></li>
+            <li>🧹 <span class="term">Haushaltsnahe Dienstleistungen</span> — помощь по дому (уборщица, няня). До 4.000 € в год → возврат <strong>~800 €</strong></li>
+            <li>📚 <span class="term">Sonderausgaben</span> — пенсионные взносы, страховки, пожертвования → индивидуально</li>
+            <li>🏦 <span class="term">Sparerpauschbetrag</span> — 1.000 € (2.000 € для пар) дохода с вкладов/акций без налога</li>
+        </ul>
+        <p><strong>Важно:</strong> Это не меняет ваш ежемесячный доход, но может принести <strong>несколько сотен евро в год</strong> — особенно если вы живёте далеко от работы или платите за уборку/ремонт.</p>
+        <p>💡 <strong>Совет:</strong> Подавайте налоговую декларацию через приложение (например, WISO, Smartsteuer) или Taxfix — это стоит ~30–50 €, но часто приносит больше.</p>
+        <div style="font-size:0.7rem; margin-top:8px;">ℹ️ Расчёт ежемесячного дохода в калькуляторе остаётся без изменений — это ваш регулярный бюджет. Налоговый возврат — это дополнительный бонус раз в год.</div>
+    </div>
+
     <div class="note">
-        <strong>📖 Что учитывает калькулятор:</strong><br>
-        • <span class="term">Wohnkosten</span> — при аренде: Warmmiete; при своём жилье: Hausgeld + отопление<br>
-        • <span class="term">Strom + Internet + GEZ</span> — всегда платите из своего кармана (при работе — напрямую, при Bürgergeld — из Regelbedarf)<br>
-        • <span class="term">Kindergeld</span> — 259 €/мес на ребёнка до 18 лет (или до 25, если учится/ищет работу)
+        <strong>📖 Русско-немецкий словарь:</strong><br>
+        • <span class="term">Kindergeld</span> — 259 € в месяц на каждого ребёнка (до 18 лет или до 25 при учёбе/поиске работы)<br>
+        • <span class="term">Kinderzuschlag (KiZ)</span> — детская добавка для работающих с низким доходом<br>
+        • <span class="term">Wohngeld</span> — жилищная помощь для работающих<br>
+        • <span class="term">Krankenversicherung (KV)</span> — медицинская страховка<br>
+        • <span class="term">Pflegeversicherung (PV)</span> — страховка по уходу<br>
+        • <span class="term">Rentenversicherung (RV)</span> — пенсионная страховка<br>
+        • <span class="term">Arbeitslosenversicherung (AV)</span> — страховка по безработице<br>
+        • <span class="term">GEZ</span> — радиовзнос (18,36 €/мес на квартиру)
     </div>
     
     <div class="footer">
-        ⚠️ Расчёт основан на официальных данных 2026. Для индивидуальной консультации обратитесь в Jobcenter или к налоговому консультанту.
+        ⚠️ Расчёт основан на официальных данных 2026. Для индивидуальной консультации обратитесь в Jobcenter или к налоговому консультанту (Steuerberater).
     </div>
     
     <div class="counter">
@@ -375,10 +410,10 @@
     const steuerklassenInfo = {
         1: "Класс 1 — Одинокий / разведённый",
         2: "Класс 2 — Один родитель с детьми",
-        3: "Класс 3 — Супруг с высоким доходом",
-        4: "Класс 4 — Супруги с равным доходом",
-        5: "Класс 5 — Супруг с низким доходом",
-        6: "Класс 6 — Вторая работа"
+        3: "Класс 3 — Супруг с более высоким доходом (партнёр в классе 5)",
+        4: "Класс 4 — Супруги с примерно равным доходом",
+        5: "Класс 5 — Супруг с низким доходом (партнёр в классе 3)",
+        6: "Класс 6 — Вторая работа или если работодатель не знает ваш класс"
     };
     
     function updateTaxClasses() {
@@ -386,24 +421,24 @@
         const container = document.getElementById('taxClassesContainer');
         container.innerHTML = '';
         if (adults >= 1) {
-            container.innerHTML += `<label>📊 Ваш налоговый класс</label>
+            container.innerHTML += `<label>📊 Ваш налоговый класс (<span class="term">Steuerklasse</span>)</label>
                 <select id="steuerklasse1">
-                    <option value="1">Класс 1 — Одинокий</option>
-                    <option value="2">Класс 2 — Один родитель</option>
-                    <option value="3">Класс 3 — Высокий доход в паре</option>
-                    <option value="4" selected>Класс 4 — Равный доход в паре</option>
-                    <option value="5">Класс 5 — Низкий доход в паре</option>
+                    <option value="1">Класс 1 — Одинокий / разведённый</option>
+                    <option value="2">Класс 2 — Один родитель (с детьми)</option>
+                    <option value="3">Класс 3 — Супруг с высоким доходом</option>
+                    <option value="4" selected>Класс 4 — Супруги с равным доходом</option>
+                    <option value="5">Класс 5 — Супруг с низким доходом</option>
                     <option value="6">Класс 6 — Вторая работа</option>
                 </select>
                 <div class="steuerklasse-hint" id="hint1"></div>`;
         }
         if (adults === 2) {
-            container.innerHTML += `<label>📊 Налоговый класс партнёра</label>
+            container.innerHTML += `<label>📊 Налоговый класс партнёра (<span class="term">Steuerklasse</span>)</label>
                 <select id="steuerklasse2">
-                    <option value="1">Класс 1 — Одинокий</option>
-                    <option value="3">Класс 3 — Высокий доход</option>
-                    <option value="4" selected>Класс 4 — Равный доход</option>
-                    <option value="5">Класс 5 — Низкий доход</option>
+                    <option value="1">Класс 1 — Одинокий / разведённый</option>
+                    <option value="3">Класс 3 — Супруг с высоким доходом</option>
+                    <option value="4" selected>Класс 4 — Супруги с равным доходом</option>
+                    <option value="5">Класс 5 — Супруг с низким доходом</option>
                     <option value="6">Класс 6 — Вторая работа</option>
                 </select>
                 <div class="steuerklasse-hint" id="hint2"></div>`;
@@ -436,7 +471,7 @@
                     <label>📚 Учится в школе/Ausbildung/университете или ищет работу?</label>
                     <select class="child-study" data-index="${i}">
                         <option value="true">Да, учится или ищет работу</option>
-                        <option value="false">Нет, работает</option>
+                        <option value="false">Нет, работает (не учится)</option>
                     </select>
                     <div style="font-size:0.7rem; color:#4a6741;">Если 18-25 лет и не учится — Kindergeld не платится</div>
                 </div>
@@ -569,13 +604,24 @@
         const diff = totalWork - cashBg;
         
         let verdictHtml = '';
-        if (diff < -50) verdictHtml = `<div class="verdict negative">❌ РАБОТАТЬ ФИНАНСОВО ХУЖЕ: на ${Math.abs(diff).toFixed(0)} € в месяц меньше, чем на Bürgergeld.</div>`;
-        else if (diff < 150) verdictHtml = `<div class="verdict negative">⚠️ Работа почти невыгодна: +${diff.toFixed(0)} € в месяц, но работа 40 ч/нед.</div>`;
-        else verdictHtml = `<div class="verdict positive">✅ Работа однозначно выгоднее: +${diff.toFixed(0)} € в месяц.</div>`;
+        if (diff < -50) verdictHtml = `<div class="verdict negative">❌ РАБОТАТЬ ФИНАНСОВО ХУЖЕ: вы теряете примерно ${Math.abs(diff).toFixed(0)} € в месяц по сравнению с Bürgergeld.</div>`;
+        else if (diff < 150) verdictHtml = `<div class="verdict negative">⚠️ Работа почти невыгодна: вы получаете всего лишь ${diff.toFixed(0)} € сверху, но работаете 40 часов в неделю.</div>`;
+        else verdictHtml = `<div class="verdict positive">✅ Работа однозначно выгоднее: +${diff.toFixed(0)} € в месяц по сравнению с Bürgergeld.</div>`;
         
         let housingDetails = (housingType === 'rent') 
             ? `Аренда (Warmmiete): ${wohnkosten} € (Jobcenter платит)` 
             : `Hausgeld: ${wohnkosten} € (Jobcenter платит) + проценты по кредиту: ${eigenerAnteil} € (из своего кармана)`;
+        
+        // Детализация Kindergeld
+        let kgDetails = '';
+        for (let i = 0; i < children.length; i++) {
+            const child = children[i];
+            const kgAmount = kindergeldForChild(child.age, child.studying);
+            kgDetails += `<br>  • Ребёнок ${i+1} (${child.age} лет): ${kgAmount} €`;
+            if (child.age >= 18 && child.age <= 25 && !child.studying) {
+                kgDetails += ` <span style="color:#b13e3e;">(нет, т.к. не учится/не ищет работу)</span>`;
+            }
+        }
         
         document.getElementById('resultArea').innerHTML = `<p><strong>📌 СЦЕНАРИЙ 1: НЕ РАБОТАЕМ → Bürgergeld</strong><br>
             Bürgergeld (включая жильё) + Kindergeld − эл/интернет/GEZ = <span class="big-number">${cashBg.toFixed(0)} €</span><br>
@@ -584,13 +630,19 @@
             Netto + Kindergeld + KiZ + Wohngeld − жильё − садик − эл/интернет/GEZ = <span class="big-number">${totalWork.toFixed(0)} €</span></p>
             <p>📊 Разница: <strong>${diff >= 0 ? '+' : ''}${diff.toFixed(0)} €</strong></p>
             ${verdictHtml}<hr>
-            <div style="font-size:0.85rem;">🔸 Kindergeld: ${kg.toFixed(0)} €<br>
+            <div style="font-size:0.85rem;">🔸 Kindergeld (всего): ${kg.toFixed(0)} €${kgDetails}<br>
             🔸 Kinderzuschlag (KiZ): ${kiz.toFixed(0)} €<br>
             🔸 Wohngeld: ${wohngeld.toFixed(0)} €<br>
             🔸 Ваш Netto: ${nettoSum.toFixed(0)} €<br>
+            🔸 Налоги (Lohnsteuer+Soli+Kirchensteuer): ${totalTax.toFixed(0)} €<br>
             🔸 Доп. расходы (эл + интернет + GEZ): ${otherCosts.toFixed(0)} €</div>
-            <div class="insurance-row"><strong>🛡️ Страховки (вы платите):</strong> ${totalSozial.toFixed(0)} €/мес<br>
-            <strong>При Bürgergeld:</strong> Jobcenter платит всё.</div>`;
+            <div class="insurance-row"><strong>🛡️ Страховки, которые вы платите при работе (ваша половина):</strong><br>
+            • <span class="term">Krankenversicherung (KV)</span> — медицинская: ${(nettoCalc1.kv + nettoCalc2.kv).toFixed(0)} €/мес<br>
+            • <span class="term">Pflegeversicherung (PV)</span> — по уходу: ${(nettoCalc1.pv + nettoCalc2.pv).toFixed(0)} €/мес<br>
+            • <span class="term">Rentenversicherung (RV)</span> — пенсионная: ${(nettoCalc1.rv + nettoCalc2.rv).toFixed(0)} €/мес<br>
+            • <span class="term">Arbeitslosenversicherung (AV)</span> — по безработице: ${(nettoCalc1.av + nettoCalc2.av).toFixed(0)} €/мес<br>
+            <strong>➡️ Всего страховок (из вашего кармана): ${totalSozial.toFixed(0)} €/мес</strong><hr>
+            <strong>🏛️ При социальной помощи (Bürgergeld):</strong> Jobcenter платит ВСЕ страховки полностью — эти деньги остаются у вас.</div>`;
     }
     
     // События
@@ -600,7 +652,7 @@
     document.getElementById('calcBtn').addEventListener('click', calculate);
     
     const autoFields = ['warmRent', 'loanInterest', 'hausgeld', 'electricity', 'internetTv', 'gez', 'kitaCost', 'salaryAdult1', 'salaryAdult2', 'churchTax'];
-    autoFields.forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('input', () => calculate()); });
+    autoFields.forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('input', () => calculate(); });
     
     updatePartnerVisibility();
     updateTaxClasses();
