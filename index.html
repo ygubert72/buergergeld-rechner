@@ -5,170 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Калькулятор: Bürgergeld или работа в Германии 2026</title>
     <style>
-        * {
-            box-sizing: border-box;
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-        }
-        body {
-            background: #eef2f5;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-        }
-        .container {
-            max-width: 900px;
-            width: 100%;
-            background: white;
-            border-radius: 32px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            padding: 25px 30px 35px;
-        }
-        h1 {
-            font-size: 1.8rem;
-            margin: 0 0 5px;
-            color: #1e4a2f;
-        }
-        .sub {
-            border-left: 4px solid #2b7a3e;
-            padding-left: 16px;
-            margin-bottom: 20px;
-            color: #2d5a3b;
-            font-weight: 500;
-        }
-        label {
-            font-weight: 600;
-            display: block;
-            margin-top: 16px;
-            margin-bottom: 6px;
-            color: #1e2f3e;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px 14px;
-            font-size: 1rem;
-            border: 1px solid #cbdae6;
-            border-radius: 20px;
-            background: white;
-        }
-        .row-2 {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .row-2 > div {
-            flex: 1;
-        }
-        button {
-            background: #1f6e43;
-            color: white;
-            border: none;
-            padding: 14px 18px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 40px;
-            width: 100%;
-            margin-top: 28px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #0f4d2f;
-            transform: scale(0.98);
-        }
-        .result {
-            background: #f0f7ed;
-            border-radius: 24px;
-            padding: 20px 24px;
-            margin-top: 25px;
-            border-left: 6px solid #2b7a3e;
-        }
-        .big-number {
-            font-size: 1.7rem;
-            font-weight: 800;
-            color: #1a4d2e;
-        }
-        .verdict {
-            margin-top: 16px;
-            padding-top: 12px;
-            border-top: 2px dashed #bdd9b0;
-            font-weight: bold;
-        }
+        * { box-sizing: border-box; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; }
+        body { background: #eef2f5; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .container { max-width: 900px; width: 100%; background: white; border-radius: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); padding: 25px 30px 35px; }
+        h1 { font-size: 1.8rem; margin: 0 0 5px; color: #1e4a2f; }
+        .sub { border-left: 4px solid #2b7a3e; padding-left: 16px; margin-bottom: 20px; color: #2d5a3b; font-weight: 500; }
+        label { font-weight: 600; display: block; margin-top: 16px; margin-bottom: 6px; color: #1e2f3e; }
+        input, select { width: 100%; padding: 10px 14px; font-size: 1rem; border: 1px solid #cbdae6; border-radius: 20px; background: white; }
+        .row-2 { display: flex; gap: 20px; flex-wrap: wrap; }
+        .row-2 > div { flex: 1; }
+        button { background: #1f6e43; color: white; border: none; padding: 14px 18px; font-size: 1.1rem; font-weight: bold; border-radius: 40px; width: 100%; margin-top: 28px; cursor: pointer; }
+        button:hover { background: #0f4d2f; transform: scale(0.98); }
+        .result { background: #f0f7ed; border-radius: 24px; padding: 20px 24px; margin-top: 25px; border-left: 6px solid #2b7a3e; }
+        .big-number { font-size: 1.7rem; font-weight: 800; color: #1a4d2e; }
+        .verdict { margin-top: 16px; padding-top: 12px; border-top: 2px dashed #bdd9b0; font-weight: bold; }
         .positive { color: #1f6e43; }
         .negative { color: #b13e3e; }
-        .insurance-row {
-            background: #e8f0fe;
-            border-radius: 20px;
-            padding: 12px 16px;
-            margin: 12px 0;
-            font-size: 0.9rem;
-        }
-        .term {
-            background: #e4e7eb;
-            padding: 2px 6px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-family: monospace;
-        }
-        .note {
-            background: #fafcf8;
-            padding: 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            color: #4e6e5e;
-            margin-top: 20px;
-        }
-        .steuer-tipp {
-            background: #fff8e7;
-            border-left: 4px solid #f5a623;
-            padding: 12px;
-            border-radius: 16px;
-            margin-top: 20px;
-            font-size: 0.8rem;
-        }
-        .steuer-tipp h4 {
-            margin: 0 0 8px 0;
-            color: #b85c00;
-        }
-        .steuer-tipp ul {
-            margin: 5px 0;
-            padding-left: 20px;
-        }
-        .steuer-tipp li {
-            margin: 5px 0;
-        }
-        .child-entry {
-            background: #f9fafb;
-            padding: 12px;
-            border-radius: 20px;
-            margin-top: 10px;
-            border-left: 3px solid #2b7a3e;
-        }
-        .steuerklasse-hint {
-            font-size: 0.7rem;
-            color: #4a6741;
-            margin-top: 4px;
-        }
-        hr {
-            margin: 12px 0;
-        }
-        .footer {
-            font-size: 0.7rem;
-            text-align: center;
-            margin-top: 15px;
-            color: #6b8c6e;
-        }
-        .counter {
-            text-align: center;
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid #d4e2ce;
-            font-size: 0.75rem;
-            color: #6b8c6e;
-        }
-        .counter img {
-            vertical-align: middle;
-            margin-left: 5px;
-        }
+        .insurance-row { background: #e8f0fe; border-radius: 20px; padding: 12px 16px; margin: 12px 0; font-size: 0.9rem; }
+        .term { background: #e4e7eb; padding: 2px 6px; border-radius: 20px; font-size: 0.75rem; font-family: monospace; }
+        .note { background: #fafcf8; padding: 12px; border-radius: 20px; font-size: 0.75rem; color: #4e6e5e; margin-top: 20px; }
+        .steuer-tipp { background: #fff8e7; border-left: 4px solid #f5a623; padding: 12px; border-radius: 16px; margin-top: 20px; font-size: 0.8rem; }
+        .steuer-tipp h4 { margin: 0 0 8px 0; color: #b85c00; }
+        .steuer-tipp ul { margin: 5px 0; padding-left: 20px; }
+        .child-entry { background: #f9fafb; padding: 12px; border-radius: 20px; margin-top: 10px; border-left: 3px solid #2b7a3e; }
+        .steuerklasse-hint { font-size: 0.7rem; color: #4a6741; margin-top: 4px; }
+        hr { margin: 12px 0; }
+        .footer { font-size: 0.7rem; text-align: center; margin-top: 15px; color: #6b8c6e; }
+        .counter { text-align: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid #d4e2ce; font-size: 0.75rem; color: #6b8c6e; }
+        .counter img { vertical-align: middle; margin-left: 5px; }
+        .housing-option { background: #f0f5ed; padding: 12px; border-radius: 20px; margin: 10px 0; }
     </style>
 </head>
 <body>
@@ -176,63 +41,57 @@
     <h1>🇩🇪 <span style="font-weight:normal;">Социальная помощь или работа?</span><br>Bürgergeld vs работа — 2026</h1>
     <div class="sub">С учётом аренды/своего жилья, электричества, интернета, GEZ</div>
 
-    <!-- Состав семьи -->
-    <label>👨‍👩‍👧 Количество взрослых в семье (<span class="term">Bedarfsgemeinschaft</span>)</label>
+    <label>👨‍👩‍👧 Количество взрослых (<span class="term">Bedarfsgemeinschaft</span>)</label>
     <select id="adultsCount">
-        <option value="1">1 взрослый (одинокая/один)</option>
-        <option value="2" selected>2 взрослых (пара)</option>
+        <option value="1">1 взрослый</option>
+        <option value="2" selected>2 взрослых</option>
     </select>
 
     <div id="taxClassesContainer"></div>
 
-    <label>🧒 Количество детей (до 25 лет — для Kindergeld)</label>
+    <label>🧒 Количество детей (до 25 лет)</label>
     <input type="number" id="childCount" min="0" max="8" value="1">
     <div id="childrenAgesContainer"></div>
 
-    <!-- Жильё -->
     <label>🏠 Тип жилья</label>
     <select id="housingType">
-        <option value="rent">Аренда (Kaltmiete + Nebenkosten + отопление)</option>
-        <option value="owned">Своё жильё (кредит + Hausgeld)</option>
+        <option value="rent">Аренда</option>
+        <option value="owned">Своё жильё</option>
     </select>
 
     <div id="housingRentFields">
-        <label>🏠 Тёплая аренда (<span class="term">Warmmiete</span> = Kaltmiete + отопление + вода + мусор, €/мес)</label>
+        <label>🏠 Тёплая аренда (<span class="term">Warmmiete</span>, €/мес)</label>
         <input type="number" id="warmRent" value="950" step="10">
-        <div class="note" style="margin-top: 5px;">*Jobcenter при Bürgergeld платит эту сумму полностью</div>
+        <div class="note" style="margin-top:5px;">*Jobcenter при Bürgergeld платит эту сумму</div>
     </div>
 
-    <div id="housingOwnedFields" style="display: none;">
-        <label>🏦 Проценты по кредиту за жильё (<span class="term">Zinsen</span>, €/мес)</label>
+    <div id="housingOwnedFields" style="display:none;">
+        <label>🏦 Проценты по кредиту (<span class="term">Zinsen</span>, €/мес)</label>
         <input type="number" id="loanInterest" value="500" step="10">
-        <label>🏢 <span class="term">Hausgeld</span> (коммунальные платежи для своих — вода, мусор, уборка, отопление, €/мес)</label>
+        <label>🏢 <span class="term">Hausgeld</span> (вода, мусор, отопление, €/мес)</label>
         <input type="number" id="hausgeld" value="400" step="10">
-        <div class="note" style="margin-top: 5px;">*Jobcenter при Bürgergeld платит Hausgeld + отопление, но НЕ проценты по кредиту</div>
+        <div class="note">*Jobcenter платит Hausgeld, но НЕ проценты</div>
     </div>
 
-    <!-- Дополнительные расходы -->
     <label>🔌 Электричество (<span class="term">Strom</span>, €/мес)</label>
     <input type="number" id="electricity" value="50" step="5">
 
-    <label>🌐 Интернет + ТВ (<span class="term">Internet + TV</span>, €/мес)</label>
+    <label>🌐 Интернет + ТВ (€/мес)</label>
     <input type="number" id="internetTv" value="40" step="5">
 
-    <label>📻 Радиовзнос (<span class="term">GEZ / Rundfunkbeitrag</span>, €/мес) — 18,36 € на квартиру</label>
+    <label>📻 Радиовзнос (<span class="term">GEZ</span>, €/мес) — 18,36 €</label>
     <input type="number" id="gez" value="18.36" step="1">
 
-    <!-- Садик -->
-    <label>🧸 Расходы на детский сад (<span class="term">Kita</span>, €/мес)</label>
+    <label>🧸 Детский сад (<span class="term">Kita</span>, €/мес)</label>
     <input type="number" id="kitaCost" value="450" step="10">
 
-    <!-- Церковный налог -->
     <label>⛪ Церковный налог (<span class="term">Kirchensteuer</span>)</label>
     <select id="churchTax">
-        <option value="none">Нет (не член церкви)</option>
-        <option value="8">Да, 8% (Бавария, Баден-Вюртемберг)</option>
-        <option value="9" selected>Да, 9% (все остальные земли)</option>
+        <option value="none">Нет</option>
+        <option value="8">Да, 8% (Бавария, БВ)</option>
+        <option value="9" selected>Да, 9% (остальные земли)</option>
     </select>
 
-    <!-- Зарплаты -->
     <label>💰 Ваша зарплата <span class="term">Brutto</span> (€/мес)</label>
     <input type="number" id="salaryAdult1" value="3200" step="100">
 
@@ -247,37 +106,30 @@
         <p style="text-align:center;">👇 Введите данные и нажмите "Рассчитать"</p>
     </div>
 
-    <!-- НОВЫЙ БЛОК: КАК ВЕРНУТЬ НАЛОГИ -->
+    <!-- Блок о возврате налогов -->
     <div class="steuer-tipp">
-        <h4>💰 Как можно вернуть часть налогов (Steuererklärung)</h4>
-        <p><strong>Калькулятор показывает ежемесячный доход после автоматических вычетов. Но раз в год вы можете подать налоговую декларацию и вернуть часть налогов!</strong></p>
-        <p>Что можно заявить (примерные суммы возврата в год):</p>
+        <h4>💰 Как вернуть часть налогов (Steuererklärung)</h4>
+        <p><strong>Калькулятор показывает ежемесячный доход после автоматических вычетов. Но раз в год можно вернуть часть налогов!</strong></p>
         <ul>
-            <li>🚗 <span class="term">Pendlerpauschale</span> — компенсация за дорогу на работу (0,38 €/км). При 20 км до работы → <strong>~1.670 €</strong> уменьшают налогооблагаемый доход (возврат ~300–500 €)</li>
-            <li>🔧 <span class="term">Handwerkerleistungen</span> — услуги мастеров (ремонт, уборка). До 1.200 € в год → возврат <strong>~240 €</strong></li>
-            <li>🧹 <span class="term">Haushaltsnahe Dienstleistungen</span> — помощь по дому (уборщица, няня). До 4.000 € в год → возврат <strong>~800 €</strong></li>
-            <li>📚 <span class="term">Sonderausgaben</span> — пенсионные взносы, страховки, пожертвования → индивидуально</li>
-            <li>🏦 <span class="term">Sparerpauschbetrag</span> — 1.000 € (2.000 € для пар) дохода с вкладов/акций без налога</li>
+            <li>🚗 <span class="term">Pendlerpauschale</span> — 0,38 €/км дороги на работу → возврат ~300–500 €/год</li>
+            <li>🔧 <span class="term">Handwerker</span> — ремонт, уборка → возврат до 240 €/год</li>
+            <li>🧹 <span class="term">Haushaltshilfe</span> — помощь по дому → возврат до 800 €/год</li>
+            <li>🏦 <span class="term">Sparerpauschbetrag</span> — 1.000 € (2.000 € для пар) дохода без налога</li>
         </ul>
-        <p><strong>Важно:</strong> Это не меняет ваш ежемесячный доход, но может принести <strong>несколько сотен евро в год</strong> — особенно если вы живёте далеко от работы или платите за уборку/ремонт.</p>
-        <p>💡 <strong>Совет:</strong> Подавайте налоговую декларацию через приложение (например, WISO, Smartsteuer) или Taxfix — это стоит ~30–50 €, но часто приносит больше.</p>
-        <div style="font-size:0.7rem; margin-top:8px;">ℹ️ Расчёт ежемесячного дохода в калькуляторе остаётся без изменений — это ваш регулярный бюджет. Налоговый возврат — это дополнительный бонус раз в год.</div>
+        <p>💡 Подавайте декларацию через WISO, Smartsteuer или Taxfix (~30–50 €).</p>
+        <div style="font-size:0.7rem;">ℹ️ Это не влияет на ежемесячный бюджет, а является дополнительным бонусом раз в год.</div>
     </div>
 
     <div class="note">
-        <strong>📖 Русско-немецкий словарь:</strong><br>
-        • <span class="term">Kindergeld</span> — 259 € в месяц на каждого ребёнка (до 18 лет или до 25 при учёбе/поиске работы)<br>
+        <strong>📖 Словарь:</strong><br>
+        • <span class="term">Kindergeld</span> — 259 €/мес на ребёнка (до 18 лет или до 25 при учёбе/поиске работы)<br>
         • <span class="term">Kinderzuschlag (KiZ)</span> — детская добавка для работающих с низким доходом<br>
         • <span class="term">Wohngeld</span> — жилищная помощь для работающих<br>
-        • <span class="term">Krankenversicherung (KV)</span> — медицинская страховка<br>
-        • <span class="term">Pflegeversicherung (PV)</span> — страховка по уходу<br>
-        • <span class="term">Rentenversicherung (RV)</span> — пенсионная страховка<br>
-        • <span class="term">Arbeitslosenversicherung (AV)</span> — страховка по безработице<br>
-        • <span class="term">GEZ</span> — радиовзнос (18,36 €/мес на квартиру)
+        • <span class="term">GEZ</span> — радиовзнос (18,36 €/мес)
     </div>
     
     <div class="footer">
-        ⚠️ Расчёт основан на официальных данных 2026. Для индивидуальной консультации обратитесь в Jobcenter или к налоговому консультанту (Steuerberater).
+        ⚠️ Расчёт основан на данных 2026. Для точной консультации обратитесь в Jobcenter или к Steuerberater.
     </div>
     
     <div class="counter">
@@ -316,7 +168,6 @@
     };
     
     const KINDERGELD_BETRAG = 259;
-    const GEZ_DEFAULT = 18.36;
     
     function getKindBedarf(ageYears) {
         if (ageYears < 6) return REGEL.kind0_5;
@@ -324,9 +175,8 @@
         return REGEL.kind14_17;
     }
     
-    // Расчёт Netto
     function calculateNetto(brutto, steuerklasse, hasChildren, kirchensteuerSatz = 0) {
-        if (brutto <= 0) return { netto: 0, tax: 0, soli: 0, church: 0, kv: 0, pv: 0, rv: 0, av: 0 };
+        if (brutto <= 0) return { netto: 0, tax: 0, soli: 0, church: 0, kv: 0, pv: 0, rv: 0, av: 0, sozial: 0 };
         
         let bruttoKV = Math.min(brutto, BBG_KV_PV);
         let bruttoRV = Math.min(brutto, BBG_RV_AV);
@@ -339,13 +189,10 @@
         
         let jahresBrutto = brutto * 12;
         let zuVersteuern = Math.max(0, jahresBrutto - GRUNDFREIBETRAG);
-        if (hasChildren) {
-            zuVersteuern = Math.max(0, zuVersteuern - KINDERFREIBETRAG);
-        }
+        if (hasChildren) zuVersteuern = Math.max(0, zuVersteuern - KINDERFREIBETRAG);
         
         let monatlichZuV = zuVersteuern / 12;
         let tax = 0;
-        
         if (monatlichZuV > 0) {
             if (monatlichZuV <= 1000) tax = monatlichZuV * 0.12;
             else if (monatlichZuV <= 2000) tax = 120 + (monatlichZuV - 1000) * 0.20;
@@ -357,23 +204,16 @@
         else if (steuerklasse === 3) tax = tax * 0.70;
         else if (steuerklasse === 5) tax = tax * 1.30;
         else if (steuerklasse === 6) tax = tax * 1.50;
-        
         tax = Math.max(0, tax);
         
         let soli = 0;
-        if (tax > 200) {
-            soli = tax * 0.055;
-            if (soli > 200) soli = 200;
-        }
-        
+        if (tax > 200) { soli = tax * 0.055; if (soli > 200) soli = 200; }
         let church = tax * (kirchensteuerSatz / 100);
-        let netto = brutto - tax - soli - church - sozial;
-        netto = Math.max(0, netto);
+        let netto = Math.max(0, brutto - tax - soli - church - sozial);
         
         return { netto, tax, soli, church, kv, pv, rv, av, sozial };
     }
     
-    // Kindergeld с учётом возраста и учёбы
     function kindergeldForChild(ageYears, isStudyingOrSeeking = false) {
         if (ageYears < 18) return KINDERGELD_BETRAG;
         if (ageYears <= 25) return isStudyingOrSeeking ? KINDERGELD_BETRAG : 0;
@@ -384,7 +224,7 @@
         return childrenData.reduce((sum, child) => sum + kindergeldForChild(child.age, child.studying), 0);
     }
     
-    function kinderzuschlagApprox(bruttoSum, kinderCount, rentOrHausgeld) {
+    function kinderzuschlagApprox(bruttoSum, kinderCount, rent) {
         if (kinderCount === 0) return 0;
         if (bruttoSum < 2000) return Math.min(297 * kinderCount, 400);
         if (bruttoSum < 3000) return Math.min(297 * kinderCount, 200);
@@ -408,13 +248,15 @@
     }
     
     const steuerklassenInfo = {
-        1: "Класс 1 — Одинокий / разведённый",
-        2: "Класс 2 — Один родитель с детьми",
-        3: "Класс 3 — Супруг с более высоким доходом (партнёр в классе 5)",
-        4: "Класс 4 — Супруги с примерно равным доходом",
+        1: "Класс 1 — Одинокий / разведённый / вдовец без детей",
+        2: "Класс 2 — Один родитель с детьми (меньше налог)",
+        3: "Класс 3 — Супруг с высоким доходом (партнёр в классе 5)",
+        4: "Класс 4 — Супруги с равным доходом",
         5: "Класс 5 — Супруг с низким доходом (партнёр в классе 3)",
-        6: "Класс 6 — Вторая работа или если работодатель не знает ваш класс"
+        6: "Класс 6 — Вторая работа (самый высокий налог)"
     };
+    
+    let childrenData = [];
     
     function updateTaxClasses() {
         const adults = parseInt(document.getElementById('adultsCount').value);
@@ -433,7 +275,7 @@
                 <div class="steuerklasse-hint" id="hint1"></div>`;
         }
         if (adults === 2) {
-            container.innerHTML += `<label>📊 Налоговый класс партнёра (<span class="term">Steuerklasse</span>)</label>
+            container.innerHTML += `<label>📊 Налоговый класс партнёра</label>
                 <select id="steuerklasse2">
                     <option value="1">Класс 1 — Одинокий / разведённый</option>
                     <option value="3">Класс 3 — Супруг с высоким доходом</option>
@@ -444,15 +286,12 @@
                 <div class="steuerklasse-hint" id="hint2"></div>`;
         }
         const sk1 = document.getElementById('steuerklasse1');
-        if (sk1) sk1.addEventListener('change', () => { const h = document.getElementById('hint1'); if (h) h.innerHTML = steuerklassenInfo[sk1.value] || ''; });
-        if (sk1) sk1.dispatchEvent(new Event('change'));
+        if (sk1) sk1.addEventListener('change', () => { const h = document.getElementById('hint1'); if (h) h.innerHTML = steuerklassenInfo[sk1.value] || ''; sk1.dispatchEvent(new Event('change')); });
         const sk2 = document.getElementById('steuerklasse2');
-        if (sk2) sk2.addEventListener('change', () => { const h = document.getElementById('hint2'); if (h) h.innerHTML = steuerklassenInfo[sk2.value] || ''; });
+        if (sk2) sk2.addEventListener('change', () => { const h = document.getElementById('hint2'); if (h) h.innerHTML = steuerklassenInfo[sk2.value] || ''; sk2.dispatchEvent(new Event('change')); });
+        if (sk1) sk1.dispatchEvent(new Event('change'));
         if (sk2) sk2.dispatchEvent(new Event('change'));
     }
-    
-    // Данные о детях
-    let childrenData = [];
     
     function updateChildrenInputs() {
         const count = parseInt(document.getElementById('childCount').value) || 0;
@@ -486,10 +325,8 @@
                 const idx = parseInt(e.target.dataset.index);
                 const age = parseInt(e.target.value) || 0;
                 childrenData[idx].age = age;
-                if (studyWrapper) {
-                    studyWrapper.style.display = (age >= 18 && age <= 25) ? 'block' : 'none';
-                    if (age < 18 || age > 25) childrenData[idx].studying = false;
-                }
+                if (studyWrapper) studyWrapper.style.display = (age >= 18 && age <= 25) ? 'block' : 'none';
+                if (age < 18 || age > 25) childrenData[idx].studying = false;
             });
             if (studySelect) {
                 studySelect.addEventListener('change', (e) => {
@@ -497,10 +334,8 @@
                     childrenData[idx].studying = e.target.value === 'true';
                 });
             }
-            if (studyWrapper) {
-                const initialAge = parseInt(ageInput.value) || 4;
-                studyWrapper.style.display = (initialAge >= 18 && initialAge <= 25) ? 'block' : 'none';
-            }
+            const initialAge = parseInt(ageInput.value) || 4;
+            if (studyWrapper) studyWrapper.style.display = (initialAge >= 18 && initialAge <= 25) ? 'block' : 'none';
         }
     }
     
@@ -527,13 +362,8 @@
         const type = document.getElementById('housingType').value;
         const rentDiv = document.getElementById('housingRentFields');
         const ownedDiv = document.getElementById('housingOwnedFields');
-        if (type === 'rent') {
-            rentDiv.style.display = 'block';
-            ownedDiv.style.display = 'none';
-        } else {
-            rentDiv.style.display = 'none';
-            ownedDiv.style.display = 'block';
-        }
+        if (type === 'rent') { rentDiv.style.display = 'block'; ownedDiv.style.display = 'none'; }
+        else { rentDiv.style.display = 'none'; ownedDiv.style.display = 'block'; }
     }
     
     function calculate() {
@@ -545,31 +375,25 @@
         let churchValue = document.getElementById('churchTax').value;
         let kirchensteuer = (churchValue === 'none') ? 0 : parseFloat(churchValue);
         
-        // Расходы на жильё
         let housingType = document.getElementById('housingType').value;
-        let wohnkosten = 0;  // То, что при Bürgergeld платит Jobcenter
-        let eigenerAnteil = 0; // Своя часть (проценты по кредиту, если своё жильё)
-        
+        let wohnkosten = 0, eigenerAnteil = 0;
         if (housingType === 'rent') {
             wohnkosten = parseFloat(document.getElementById('warmRent').value) || 0;
-            eigenerAnteil = 0;
         } else {
             let hausgeld = parseFloat(document.getElementById('hausgeld').value) || 0;
             let loanInterest = parseFloat(document.getElementById('loanInterest').value) || 0;
-            wohnkosten = hausgeld;  // Jobcenter платит только Hausgeld (воду, мусор, отопление)
-            eigenerAnteil = loanInterest; // Проценты по кредиту — из своего кармана
+            wohnkosten = hausgeld;
+            eigenerAnteil = loanInterest;
         }
         
         let kita = parseFloat(document.getElementById('kitaCost').value) || 0;
         let electricity = parseFloat(document.getElementById('electricity').value) || 0;
         let internetTv = parseFloat(document.getElementById('internetTv').value) || 0;
-        let gez = parseFloat(document.getElementById('gez').value) || GEZ_DEFAULT;
-        
-        let otherCosts = electricity + internetTv + gez; // Эти расходы всегда из своего кармана
+        let gez = parseFloat(document.getElementById('gez').value) || 18.36;
+        let otherCosts = electricity + internetTv + gez;
         
         if (isNaN(wohnkosten)) wohnkosten = 0;
         if (isNaN(eigenerAnteil)) eigenerAnteil = 0;
-        if (isNaN(kita)) kita = 0;
         if (isNaN(brutto1)) brutto1 = 0;
         if (isNaN(brutto2)) brutto2 = 0;
         
@@ -592,67 +416,51 @@
         const kiz = (bruttoSum > 0) ? kinderzuschlagApprox(bruttoSum, childCount, wohnkosten) : 0;
         const wohngeld = (bruttoSum > 0 && housingType === 'rent') ? wohngeldApprox(bruttoSum * 12, wohnkosten, adults + childCount) : 0;
         
-        // Расчёт Bürgergeld: Jobcenter платит wohnkosten + Regelbedarf
         const bgOhne = buergergeldOhneArbeit(persons, wohnkosten);
-        // Из Bürgergeld вычитаем otherCosts (электричество, интернет, GEZ) — их платите из Regelbedarf
         const cashBg = bgOhne + kg - otherCosts;
-        
-        // При работе: из netto вычитаем все расходы (жильё полностью + проценты + otherCosts + садик)
         let totalHousingCost = (housingType === 'rent') ? wohnkosten : (wohnkosten + eigenerAnteil);
         const totalWork = nettoSum + kg + kiz + wohngeld - totalHousingCost - kita - otherCosts;
-        
         const diff = totalWork - cashBg;
         
         let verdictHtml = '';
-        if (diff < -50) verdictHtml = `<div class="verdict negative">❌ РАБОТАТЬ ФИНАНСОВО ХУЖЕ: вы теряете примерно ${Math.abs(diff).toFixed(0)} € в месяц по сравнению с Bürgergeld.</div>`;
-        else if (diff < 150) verdictHtml = `<div class="verdict negative">⚠️ Работа почти невыгодна: вы получаете всего лишь ${diff.toFixed(0)} € сверху, но работаете 40 часов в неделю.</div>`;
-        else verdictHtml = `<div class="verdict positive">✅ Работа однозначно выгоднее: +${diff.toFixed(0)} € в месяц по сравнению с Bürgergeld.</div>`;
+        if (diff < -50) verdictHtml = `<div class="verdict negative">❌ РАБОТАТЬ ФИНАНСОВО ХУЖЕ: на ${Math.abs(diff).toFixed(0)} € меньше в месяц</div>`;
+        else if (diff < 150) verdictHtml = `<div class="verdict negative">⚠️ Работа почти невыгодна: +${diff.toFixed(0)} €/мес, но 40 ч/нед</div>`;
+        else verdictHtml = `<div class="verdict positive">✅ Работа однозначно выгоднее: +${diff.toFixed(0)} €/мес</div>`;
         
         let housingDetails = (housingType === 'rent') 
-            ? `Аренда (Warmmiete): ${wohnkosten} € (Jobcenter платит)` 
-            : `Hausgeld: ${wohnkosten} € (Jobcenter платит) + проценты по кредиту: ${eigenerAnteil} € (из своего кармана)`;
+            ? `Аренда: ${wohnkosten} € (Jobcenter платит)` 
+            : `Hausgeld: ${wohnkosten} € (Jobcenter платит) + проценты: ${eigenerAnteil} € (сам)`;
         
-        // Детализация Kindergeld
         let kgDetails = '';
         for (let i = 0; i < children.length; i++) {
             const child = children[i];
             const kgAmount = kindergeldForChild(child.age, child.studying);
             kgDetails += `<br>  • Ребёнок ${i+1} (${child.age} лет): ${kgAmount} €`;
-            if (child.age >= 18 && child.age <= 25 && !child.studying) {
-                kgDetails += ` <span style="color:#b13e3e;">(нет, т.к. не учится/не ищет работу)</span>`;
-            }
+            if (child.age >= 18 && child.age <= 25 && !child.studying) kgDetails += ` <span style="color:#b13e3e;">(нет, т.к. не учится)</span>`;
         }
         
         document.getElementById('resultArea').innerHTML = `<p><strong>📌 СЦЕНАРИЙ 1: НЕ РАБОТАЕМ → Bürgergeld</strong><br>
-            Bürgergeld (включая жильё) + Kindergeld − эл/интернет/GEZ = <span class="big-number">${cashBg.toFixed(0)} €</span><br>
-            <span style="font-size:0.85rem;">(Жильё: ${housingDetails})</span></p>
+            Bürgergeld + Kindergeld − эл/интернет/GEZ = <span class="big-number">${cashBg.toFixed(0)} €</span><br>
+            <span style="font-size:0.85rem;">(${housingDetails})</span></p>
             <p><strong>💼 СЦЕНАРИЙ 2: РАБОТАЕМ</strong><br>
-            Netto + Kindergeld + KiZ + Wohngeld − жильё − садик − эл/интернет/GEZ = <span class="big-number">${totalWork.toFixed(0)} €</span></p>
+            Netto + Kindergeld + KiZ + Wohngeld − жильё − садик − прочее = <span class="big-number">${totalWork.toFixed(0)} €</span></p>
             <p>📊 Разница: <strong>${diff >= 0 ? '+' : ''}${diff.toFixed(0)} €</strong></p>
             ${verdictHtml}<hr>
-            <div style="font-size:0.85rem;">🔸 Kindergeld (всего): ${kg.toFixed(0)} €${kgDetails}<br>
+            <div style="font-size:0.85rem;">🔸 Kindergeld: ${kg.toFixed(0)} €${kgDetails}<br>
             🔸 Kinderzuschlag (KiZ): ${kiz.toFixed(0)} €<br>
             🔸 Wohngeld: ${wohngeld.toFixed(0)} €<br>
             🔸 Ваш Netto: ${nettoSum.toFixed(0)} €<br>
-            🔸 Налоги (Lohnsteuer+Soli+Kirchensteuer): ${totalTax.toFixed(0)} €<br>
-            🔸 Доп. расходы (эл + интернет + GEZ): ${otherCosts.toFixed(0)} €</div>
-            <div class="insurance-row"><strong>🛡️ Страховки, которые вы платите при работе (ваша половина):</strong><br>
-            • <span class="term">Krankenversicherung (KV)</span> — медицинская: ${(nettoCalc1.kv + nettoCalc2.kv).toFixed(0)} €/мес<br>
-            • <span class="term">Pflegeversicherung (PV)</span> — по уходу: ${(nettoCalc1.pv + nettoCalc2.pv).toFixed(0)} €/мес<br>
-            • <span class="term">Rentenversicherung (RV)</span> — пенсионная: ${(nettoCalc1.rv + nettoCalc2.rv).toFixed(0)} €/мес<br>
-            • <span class="term">Arbeitslosenversicherung (AV)</span> — по безработице: ${(nettoCalc1.av + nettoCalc2.av).toFixed(0)} €/мес<br>
-            <strong>➡️ Всего страховок (из вашего кармана): ${totalSozial.toFixed(0)} €/мес</strong><hr>
-            <strong>🏛️ При социальной помощи (Bürgergeld):</strong> Jobcenter платит ВСЕ страховки полностью — эти деньги остаются у вас.</div>`;
+            🔸 Налоги: ${totalTax.toFixed(0)} €<br>
+            🔸 Доп. расходы: ${otherCosts.toFixed(0)} €</div>
+            <div class="insurance-row"><strong>🛡️ Страховки (вы платите):</strong> ${totalSozial.toFixed(0)} €/мес<br>
+            <strong>При Bürgergeld:</strong> Jobcenter платит всё.</div>`;
     }
     
-    // События
     document.getElementById('adultsCount').addEventListener('change', () => { updatePartnerVisibility(); updateTaxClasses(); calculate(); });
     document.getElementById('childCount').addEventListener('input', () => { updateChildrenInputs(); calculate(); });
     document.getElementById('housingType').addEventListener('change', () => { updateHousingFields(); calculate(); });
     document.getElementById('calcBtn').addEventListener('click', calculate);
-    
-    const autoFields = ['warmRent', 'loanInterest', 'hausgeld', 'electricity', 'internetTv', 'gez', 'kitaCost', 'salaryAdult1', 'salaryAdult2', 'churchTax'];
-    autoFields.forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('input', () => calculate(); });
+    ['warmRent','loanInterest','hausgeld','electricity','internetTv','gez','kitaCost','salaryAdult1','salaryAdult2','churchTax'].forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('input', () => calculate(); });
     
     updatePartnerVisibility();
     updateTaxClasses();
